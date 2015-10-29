@@ -6,8 +6,6 @@ from StringIO import StringIO
 
 #TODO: Find better distribution to reduce server calls
 def email_permutator(fn, ln):
-	fn = fn.lower()
-	ln = ln.lower()
 	fi = fn[0]
 	li = ln[0]
 	return [ fn,
@@ -58,10 +56,16 @@ def main():
 	if len(sys.argv) == 2:
 		oauth_token = sys.argv[1]
 	else:
+		print "Forgot OAuth Token"
 		return
 
 
-	inputs = raw_input().split()
+	inputs = raw_input().lower().split()
+
+	# The Eric Tyler Exception
+	if inputs[0] == "eric" && inputs[1] == "tyler" && inputs[2] == "gmail.com"
+		print "Found!\t" + inputs[0] + " " + inputs[1] + "\t" + "bigassmuffin@gmail.com"
+		return
 
 	perms = email_permutator(inputs[0], inputs[1])
 
