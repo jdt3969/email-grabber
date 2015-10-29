@@ -63,7 +63,7 @@ def main():
 	inputs = raw_input().lower().split()
 
 	# The Eric Tyler Exception
-	if inputs[0] == "eric" and inputs[1] == "tyler" and inputs[2] == "gmail.com"
+	if inputs[0] == "eric" and inputs[1] == "tyler" and inputs[2] == "gmail.com":
 		print "Found!\t" + inputs[0] + " " + inputs[1] + "\t" + "bigassmuffin@gmail.com"
 		return
 
