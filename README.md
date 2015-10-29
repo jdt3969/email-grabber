@@ -21,5 +21,5 @@ This workaround for obtaining an oauth token will give you the priveleges of the
 The oauth token you get is linked to your linkedin acount -- don't abuse requests. There is a sleep function in the program that makes linkedin server requests less spammy.
 	- A note from your friendly neighborhood [spider-man]
 
-	[pycurl]: <http://pycurl.sourceforge.net/>
-	[spider-man]: <http://quoteinvestigator.com/wp-content/uploads/2015/07/spider400.jpg>
+[pycurl]: <http://pycurl.sourceforge.net/>
+[spider-man]: <http://quoteinvestigator.com/wp-content/uploads/2015/07/spider400.jpg>
