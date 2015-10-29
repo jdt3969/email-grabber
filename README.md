@@ -9,6 +9,7 @@ This workaround for obtaining an oauth token will give you the privileges of the
 * Get Rapportive plugin
 * Open GMail and then open an email
 * Right click page and click inspect element and navigate to the network tab
+* Refresh page
 * Type "linkedin" into filter and click on "email="
 * Under "Request Headers" copy oauth_token
 
