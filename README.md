@@ -1,4 +1,4 @@
-# email-grabber
+# Email Grabber
 
 This email grabber uses the "semi-secret" Linkedin API call that Rapportive uses. Linkedin requires an OAuth token for the call. Linkedin only gives oauth token through the browser and to a registered Linkedin app. This is not a registered Linkedin app so the workaround is a little (a lot) hacky. If there is a better way, I would love to hear. The Linkedin REST API throttles requests per user but I never reached my limit during testing. (Maybe Rapportive is a special case)
 
