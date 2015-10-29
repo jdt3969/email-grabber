@@ -4,7 +4,7 @@ This email grabber uses the "semi-secret" Linkedin API call that Rapportive uses
 
 ### OAuth Token Workaround
 
-This workaround for obtaining an oauth token will give you the privileges of the Rapportive app.
+This workaround for obtaining an oauth token will give you the privileges of the Rapportive app. The tokens will expire after a while so just repeat these steps for another one.
 
 * Get Rapportive plugin
 * Open GMail and then open an email
