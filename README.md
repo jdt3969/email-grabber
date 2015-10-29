@@ -27,5 +27,16 @@ The oauth token you get is linked to your linkedin acount -- don't abuse request
 
 > A note from your friendly neighborhood [spider-man]
 
+This is by no means a surefire way and all results should be checked with Rapportive
+
+### Future Updates
+
+* Increase efficiency and reduce server requests with probability model on permutations
+* Make this work for a list of contacts
+* Add options to not stop at the first found (two people share the same name)
+* Also output Linkedin URL for person. Makes verification faster
+* Add email server verification when linkedin fails (less reliable)
+* Hack Sidekicks API for emails linked to social media (not that great but will catch some)
+
 [pycurl]: <http://pycurl.sourceforge.net/>
 [spider-man]: <http://quoteinvestigator.com/wp-content/uploads/2015/07/spider400.jpg>
