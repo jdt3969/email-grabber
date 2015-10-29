@@ -93,7 +93,7 @@ def main():
 			print "Unknown Error -- Exiting"
 			return
 
-		#time.sleep(1)
+		time.sleep(1)
 
 	if not found:
 		print "Not Found"
