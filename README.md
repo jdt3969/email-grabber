@@ -4,17 +4,22 @@ This email grabber uses the "semi-secret" Linkedin API call that Rapportive uses
 
 ### OAuth Token Workaround
 
-This workaround for obtaining an oauth token will give you the priveleges of the Rapportive app.
+This workaround for obtaining an oauth token will give you the privileges of the Rapportive app.
 
-	- Get Rapportive plugin
-	- Open GMail and then open an email
-	- Right click page and click inspect element and navigate to the network tab
-	- Type "linkedin" into filter and click on "email="
-	- Under "Request Headers" copy oauth_token
+* Get Rapportive plugin
+* Open GMail and then open an email
+* Right click page and click inspect element and navigate to the network tab
+* Type "linkedin" into filter and click on "email="
+* Under "Request Headers" copy oauth_token
 
 ### Dependencies
 
 [pycurl] -- Used to send https request to linkedin
+
+### Running app
+
+	\> python email-grabber.py [oauth_token]
+	\> first_name last_name domain
 
 ### Notes
 
