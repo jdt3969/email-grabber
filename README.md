@@ -21,6 +21,20 @@ This workaround for obtaining an oauth token will give you the privileges of the
 
 	\> python email-grabber.py [oauth_token]
 	\> first_name last_name domain
+	\> ...output...
+	\> quit
+
+or
+
+	\> python email-grabber.py [oauth_token] < input.txt
+	\> ...output...
+
+Sample input.txt
+
+	firstname lastname domain.com
+	firstname lastname domain.org
+	firstname lastname domain.io
+	quit
 
 ### Notes
 
@@ -33,7 +47,6 @@ This is by no means a surefire way and all results should be checked with Rappor
 ### Future Updates
 
 * Increase efficiency and reduce server requests with probability model on permutations
-* Make this work for a list of contacts
 * Add options to not stop at the first found (two people share the same name)
 * Also output Linkedin URL for person. Makes verification faster
 * Add email server verification when linkedin fails (less reliable)
