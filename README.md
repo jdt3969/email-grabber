@@ -1,6 +1,6 @@
 # Email Grabber
 
-This email grabber uses the "semi-secret" Linkedin API call that Rapportive uses. Linkedin requires an OAuth token for the call. Linkedin only gives oauth token through the browser and to a registered Linkedin app. This is not a registered Linkedin app so the workaround is a little (a lot) hacky. If there is a better way, I would love to hear. The Linkedin REST API throttles requests per user but I never reached my limit during testing. (Maybe Rapportive is a special case)
+This email grabber uses the "semi-secret" Linkedin API call that Rapportive uses. Linkedin requires an OAuth token for the call. Linkedin only gives oauth token through the browser and to a registered Linkedin app. This is not a registered Linkedin app so the workaround is a little (a lot) hacky. If there is a better way, I would love to hear. Not sure if authorization from Rapportive has unique privileges.
 
 ### OAuth Token Workaround
 
@@ -22,6 +22,8 @@ This workaround for obtaining an oauth token will give you the privileges of the
 Arguments
 * -t, --token -> oauth token argument
 * -v, --verbose -> outputs more about what program is doing
+* -b, --browser-check -> opens browser pointing to found persons URL
+* -u, --url -> outputs URL on line below found person line
 
 Smaple run
 
@@ -48,7 +50,7 @@ The oauth token you get is linked to your linkedin acount -- don't abuse request
 
 > A note from your friendly neighborhood [spider-man]
 
-This is by no means a surefire way and all results should be checked with Rapportive
+This is by no means a surefire way and all results should be checked. For ease, use the -b or --browser-check option to open a browser window to the found person's url for quick verification.
 
 ### Future Updates
 
