@@ -2,6 +2,7 @@ import sys
 import pycurl
 import json
 import time
+import getopt
 from StringIO import StringIO
 
 #TODO: Find better distribution to reduce server calls
@@ -53,17 +54,37 @@ def get_curl_call(oauth_token, local_part, domain):
 
 def main():
 
-	if len(sys.argv) == 2:
-		oauth_token = sys.argv[1]
-	else:
-		print "Forgot OAuth Token"
-		return
+	'''
+	Handle cmd options
+	'''
+	try:
+		opts, args = getopt.getopt(sys.argv[1:], "t:v", ["token", "verbose"])
+	except getopt.GetoptError as err:
+		print str(err)
+		sys.exit(2)
 
+	oauth_token = -1
+	verbose = False
+	for o, a in opts:
+		if o in ("-v", "--verbose"):
+			verbose = True
+		elif o in ("-t", "--token"):
+			oauth_token = a
+		else:
+			assert False, "unhandled option"
 
+	if oauth_token == -1:
+		assert False, "Did not supply an oauth token"
+
+	'''
+	Start main program loop
+	'''
 	while True:
 		
+		# Read in inputs
 		inputs = raw_input().lower().split()
 
+		# Check if user requested an exit
 		if inputs == ["quit"]:
 			return
 
@@ -72,10 +93,12 @@ def main():
 			print "Found!\t" + inputs[0] + " " + inputs[1] + "\t" + "bigassmuffin@gmail.com"
 			return
 
+		# Returns list of all permutations based on first and last name
 		perms = email_permutator(inputs[0], inputs[1])
 
 		found = False
 
+		# Checks all permutations with a call to Linkedin API
 		for local_part in perms:
 			curl_call = get_curl_call(oauth_token, local_part, inputs[2])
 			buffer = StringIO()
@@ -89,23 +112,32 @@ def main():
 			info = buffer.getvalue()
 			parsed_info = json.loads(info)
 
+			# Found an email associated with permutation
 			if 'firstName' in parsed_info:
 				found = True
 				print "Found!\t" + inputs[0] + " " + inputs[1] + "\t" + local_part + "@" + inputs[2]
 				break
+			# No email found associated with this permutation
 			elif parsed_info['message'][:20] == "Couldn't find member":
-				print "X " + local_part + "@" + inputs[2]
+				if verbose:
+					print "X " + local_part + "@" + inputs[2]
+			# The user's oauth token has expired
 			elif parsed_info['message'][:29] == "[unauthorized]. token expired":
 				print "Token Expired -- Exiting"
 				return
+			# Something weird happened
 			else:
+				print info
 				print "Unknown Error -- Exiting"
 				return
 
+			# Sleep in between each call to prevent being spammy
 			time.sleep(1)
 
+		# We have failed our user and the shame runs deep
 		if not found:
 			print "Not Found\t" + inputs[0] + " " + inputs[1]
 
+# Abstraction for main function
 if __name__ == "__main__":
 	main()
