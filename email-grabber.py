@@ -3,6 +3,7 @@ import pycurl
 import json
 import time
 import getopt
+import webbrowser
 from StringIO import StringIO
 
 #TODO: Find better distribution to reduce server calls
@@ -46,7 +47,8 @@ def email_permutator(fn, ln):
 			]
 
 def get_curl_call(oauth_token, local_part, domain):
-	return ['https://api.linkedin.com/v1/people/email=' + local_part + '%40' + domain + ':(first-name,last-name)',
+	return ['https://api.linkedin.com/v1/people/email=' + local_part + '%40' + domain + 
+			':(first-name,last-name,public-profile-url)',
 		   'x-li-format: json',
 		   'Connection: keep-alive',
 		   'oauth_token: ' + oauth_token,
@@ -54,22 +56,32 @@ def get_curl_call(oauth_token, local_part, domain):
 
 def main():
 
+	#webbrowser.open_new("http://www.google.com")
+
 	'''
 	Handle cmd options
 	'''
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], "t:v", ["token", "verbose"])
+		short_opts = "t:vbu"
+		long_opts = ["token", "verbose", "browser-check", "url"]
+		opts, args = getopt.getopt(sys.argv[1:], short_opts, long_opts)
 	except getopt.GetoptError as err:
 		print str(err)
 		sys.exit(2)
 
 	oauth_token = -1
 	verbose = False
+	browser_check = False
+	print_url = False
 	for o, a in opts:
 		if o in ("-v", "--verbose"):
 			verbose = True
 		elif o in ("-t", "--token"):
 			oauth_token = a
+		elif o in ("-b", "--browser-check"):
+			browser_check = True
+		elif o in ("-u", "--url"):
+			print_url = True
 		else:
 			assert False, "unhandled option"
 
@@ -116,6 +128,10 @@ def main():
 			if 'firstName' in parsed_info:
 				found = True
 				print "Found!\t" + inputs[0] + " " + inputs[1] + "\t" + local_part + "@" + inputs[2]
+				if print_url:
+					print parsed_info['publicProfileUrl']
+				if browser_check:
+					webbrowser.open_new(parsed_info['publicProfileUrl'])
 				break
 			# No email found associated with this permutation
 			elif parsed_info['message'][:20] == "Couldn't find member":
@@ -124,6 +140,10 @@ def main():
 			# The user's oauth token has expired
 			elif parsed_info['message'][:29] == "[unauthorized]. token expired":
 				print "Token Expired -- Exiting"
+				return
+			# The user reached Linkedin's throttle limit
+			elif parsed_info['message'][:14] == "Throttle limit":
+				print "24 Hour Throttle Limit Reached -- Exiting"
 				return
 			# Something weird happened
 			else:
