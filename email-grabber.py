@@ -143,7 +143,7 @@ def main():
 				return
 			# The user reached Linkedin's throttle limit
 			elif parsed_info['message'][:14] == "Throttle limit":
-				print "24 Hour Throttle Limit Reached -- Exiting"
+				print "24 Hour Throttle Limit Reached. Refreshes at midnight GMT -- Exiting"
 				return
 			# Something weird happened
 			else:
