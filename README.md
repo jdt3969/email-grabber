@@ -18,15 +18,21 @@ This workaround for obtaining an oauth token will give you the privileges of the
 [pycurl] -- Used to send https request to linkedin
 
 ### Running app
+	
+Arguments
+* -t, --token -> oauth token argument
+* -v, --verbose -> outputs more about what program is doing
 
-	\> python email-grabber.py [oauth_token]
+Smaple run
+
+	\> python email-grabber.py -t [oauth_token]
 	\> first_name last_name domain
 	\> ...output...
 	\> quit
 
 or
 
-	\> python email-grabber.py [oauth_token] < input.txt
+	\> python email-grabber.py -t [oauth_token] < input.txt
 	\> ...output...
 
 Sample input.txt
@@ -47,10 +53,11 @@ This is by no means a surefire way and all results should be checked with Rappor
 ### Future Updates
 
 * Increase efficiency and reduce server requests with probability model on permutations
-* Add options to not stop at the first found (two people share the same name)
+* Add option to not stop at the first found (two people share the same name)
 * Also output Linkedin URL for person. Makes verification faster
 * Add email server verification when linkedin fails (less reliable)
 * Hack Sidekicks API for emails linked to social media (not that great but will catch some)
+* Add option to output to file
 
 [pycurl]: <http://pycurl.sourceforge.net/>
 [spider-man]: <http://quoteinvestigator.com/wp-content/uploads/2015/07/spider400.jpg>
