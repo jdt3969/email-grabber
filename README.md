@@ -49,6 +49,7 @@ Sample input.txt
 The oauth token you get is linked to your linkedin acount -- don't abuse requests. There is a sleep function in the program that makes linkedin server requests less spammy.
 
 > A note from your friendly neighborhood spider-man
+
 ![With great power comes great responsibility][spider-man]
 
 This is by no means a surefire way and all results should be checked. For ease, use the -b or --browser-check option to open a browser window to the found person's url for quick verification.
